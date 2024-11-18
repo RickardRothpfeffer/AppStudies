@@ -1,0 +1,43 @@
+﻿Purpose:
+In AppMusicRazor
+Add Asp.Net.Core Identity
+Add Asp.Net.Core Identity models to Application Database
+
+Steps:
+
+1. Update all packages to latest .NET 8 versions
+
+2. In Models add a User class inherited from IdentityUser
+	public class User : IdentityUser<Guid>
+	{...}
+
+3. In Db Context add name spaces
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
+
+4. In Db Context have csMainDbContext inherit from IdentityDbContext instead of DbContext
+public class csMainDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
+
+5. In DbContextExtensions.cs add a Service extention method defining what database Indentity should be using
+public static IServiceCollection AddIdentityConnectionsDbContext(this IServiceCollection serviceCollection, string user=null)
+
+6. In Programs.cs add a DB Context for the Identity Services from csMainDbContext
+builder.Services.AddIdentityConnectionsDbContext();
+
+7. In Program make sure the app will use Authentication and Authorization
+app.UseAuthentication();
+app.UseAuthorization();
+
+8. In Programs.cs add and configure IdentityServices to DbContext.csMainDbContext
+//Add IdentityServices to DbContext.MainDbContext
+builder.Services.AddDefaultIdentity<User>(options => {
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.SignIn.RequireConfirmedAccount = false;
+}).AddEntityFrameworkStores<DbContext.MainDbContext>();
+
+9. Delete the database in Azure Data Studio
+
+10. Make a new initial-migration and database update. Investigate the database created

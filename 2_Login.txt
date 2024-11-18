@@ -1,0 +1,27 @@
+﻿Purpose:
+In AppMusicRazor
+Add Asp.Net.Core Identity Login capabilities
+
+Steps:
+1. Pages/Account/ add pages to login and logout
+   Add a Login Razor page and model
+   Add a Logout Razor page and model
+
+2. In Program.cs after adding builder.Services.AddDefaultIdentity add configuration of own Login page
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Account/Login";
+    options.AccessDeniedPath = "/Account/Login";
+});
+
+3. In Shared add a Razor page partial, _LoginPartial  (it can be empty)
+
+4. In _Layout.cshtml add Menu adaptions to show only logout if logged in, otherwise Login and Register
+Add using statments
+@using Microsoft.AspNetCore.Identity;
+@using Models;
+@inject UserManager<User> userManager;
+
+5. In _Layout.cshtml add @if (!User.Identity.IsAuthenticated) to controll Login, Register, Logout meny items
+
+6. Execute and login and logout users

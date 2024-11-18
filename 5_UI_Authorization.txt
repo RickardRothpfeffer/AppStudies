@@ -1,0 +1,35 @@
+﻿Purpose:
+In AppMusicRazor
+Adjust UI to hide and show buttons depending on User Authorized to access the resource
+
+Steps:
+1. In ListOfGroups.cshtml and ViewGroup.cshtml make sure below using and injections are in place
+    @using Microsoft.AspNetCore.Authorization;
+    @using Microsoft.AspNetCore.Identity;
+    @using AppMusicRazor.ModelAuthorization;
+    @inject IAuthorizationService _authorizationService;
+
+2.  In ListOfGroups.cshtml make a call to AuthorizeAsync to check if User is Authorized to access the property in the Model
+@{
+    ViewData["Title"] = "List groups";
+    var authResult = await _authorizationService.AuthorizeAsync(User, Model.MusicGroups.First(), csMusicGroupOperations.Delete);
+}
+
+3.  In ViewGroup.cshtml make a call to AuthorizeAsync to check if User is Authorized to access the property in the Model
+@{
+    ViewData["Title"] = "View group";
+    var authResult = await _authorizationService.AuthorizeAsync(User, Model.MusicGroup, MusicGroupOperations.Delete);
+}
+
+4. In ListOfGroups.cshtml remove New, Edit and Delete buttons if User is not Authenticated to access resoure
+
+    <div class="@(authResult.Succeeded?"col-md-10": "col-md-12") themed-grid-head-col">Group Name</div>
+        @if (authResult.Succeeded)
+        {...}
+
+5. In ViewGroup.cshtml remove the Edit button if User is not Authenticated to access resoure
+    @if (authResult.Succeeded)
+    {...}
+
+
+6. Run the app and see that the buttons for user actions for Delete, Edit and New is only visible when you are logged in 
