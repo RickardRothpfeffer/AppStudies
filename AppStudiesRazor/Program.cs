@@ -11,6 +11,7 @@ builder.Services.AddDatabaseConnections(builder.Configuration);
 
 #region Setup the Dependency service
 builder.Services.AddSingleton<IQuoteService, QuoteService>();
+builder.Services.AddSingleton<LatinService>();
 builder.Services.AddScoped<IMusicService, MusicServiceWapi>();
 builder.Services.AddHttpClient(name: "MusicWebApi", configureClient: options =>
 {

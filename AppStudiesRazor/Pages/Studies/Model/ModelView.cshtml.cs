@@ -24,12 +24,13 @@ namespace AppStudies.Pages
         public string ErrorMessage { get; set; } = null;
 
         //Will execute on a Get request
-        public IActionResult OnGet()
+        public IActionResult OnGet(string id)
         {
             try
             {
+                Guid _id = Guid.Parse(id);
                 //Read a QueryParameter
-                Guid _id = Guid.Parse(Request.Query["id"]);
+                //Guid _id = Guid.Parse(Request.Query["id"]);
 
                 //Use the Service
                 Quote = _service.ReadQuote(_id);

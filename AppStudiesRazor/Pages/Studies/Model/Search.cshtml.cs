@@ -37,15 +37,15 @@ namespace AppStudies.Pages
 
 
         //Will execute on a Get request
-        public IActionResult OnGet()
+        public IActionResult OnGet(string pagenr, string search)
         {
             //Read a QueryParameters
-            if (int.TryParse(Request.Query["pagenr"], out int _pagenr))
+            if (int.TryParse(pagenr, out int _pagenr))
             {
                 ThisPageNr = _pagenr;
             }
 
-            SearchFilter = Request.Query["search"];
+            SearchFilter = search; //Request.Query["search"];
 
             //Pagination
             UpdatePagination();

@@ -18,7 +18,10 @@
                 <div class="col-md-16  text-end">@item.Author</div>
             </div>
             <div class="col-md-2 themed-grid-col">
+                <!-- 
                 <a href="~/Studies/Model/ModelView?id=@item.QuoteId" class="btn btn-success btn-sm" type="button">View</a>
+                -->
+                <a asp-page="/Studies/Model/ModelView" asp-route-id=@item.QuoteId class="btn btn-success btn-sm" type="button">View</a>
             </div>
         </div>
     }
