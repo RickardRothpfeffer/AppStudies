@@ -20,7 +20,7 @@
         </div>
 
         <div class="col-md-7 col-lg-8">
-            <a href="~/Studies/PageHandlers?idGet=@Guid.NewGuid()" class="w-100 btn btn-primary btn-lg my-1">Fire Get</a>
+            <a href="~/Studies/Model/PageHandlers?idGet=@Guid.NewGuid()" class="w-100 btn btn-primary btn-lg my-1">Fire Get</a>
         </div>
         <div class="col-md-7 col-lg-8">
             <form method="post" class="needs-validation" novalidate>
@@ -46,7 +46,8 @@
         <div class="col-md-7 col-lg-8">
             <form asp-page-handler="view" method="post" class="needs-validation" novalidate>
 
-                <input type="hidden" name="id" value="@Guid.NewGuid()" />
+                <input type="hidden" name="name" value="Hello" />
+                <input type="hidden" name="vid" value="@Guid.NewGuid()" />
                 <button class="w-100 btn btn-primary btn-lg my-1" type="submit">Fire PostView</button>
             </form>
         </div>
