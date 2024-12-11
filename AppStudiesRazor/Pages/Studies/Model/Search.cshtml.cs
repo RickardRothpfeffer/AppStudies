@@ -33,7 +33,7 @@ namespace AppStudies.Pages
 
         //ModelBinding for the form
         [BindProperty]
-        public string SearchFilter { get; set; } = null;
+        public string SearchFilter { get; set; }
 
 
         //Will execute on a Get request
@@ -45,7 +45,7 @@ namespace AppStudies.Pages
                 ThisPageNr = _pagenr;
             }
 
-            SearchFilter = search; //Request.Query["search"];
+            SearchFilter = "Martin"; //Request.Query["search"];
 
             //Pagination
             UpdatePagination();

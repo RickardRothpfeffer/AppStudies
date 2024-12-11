@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using AppStudiesMVC.Models;
 using Services;
+using System.Net.WebSockets;
 
 namespace AppStudiesMVC.Controllers;
 
@@ -9,6 +10,7 @@ public class HomeController : Controller
 {
     readonly ILogger<HomeController> _logger;
     readonly IQuoteService _service = null;
+
 
     public HomeController(ILogger<HomeController> logger, IQuoteService service)
     {
@@ -33,6 +35,12 @@ public class HomeController : Controller
     {
         return View();
     }
+
+
+
+
+
+
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

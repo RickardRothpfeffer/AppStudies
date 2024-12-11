@@ -9,11 +9,13 @@ public class ModelController : Controller
 {
     private readonly ILogger<ModelController> _logger;
     IQuoteService _service = null;
+    readonly LatinService _latinService;
 
-    public ModelController(ILogger<ModelController> logger, IQuoteService service)
+    public ModelController(ILogger<ModelController> logger, IQuoteService service, LatinService latinService)
     {
         _service = service;
         _logger = logger;
+        _latinService = latinService;
     }
 
     //Will execute on a Get request
@@ -55,6 +57,38 @@ public class ModelController : Controller
         vwm.Quotes = _service.ReadQuotes(vwm.ThisPageNr, vwm.PageSize, vwm.SearchFilter);
 
         return View("Search", vwm);
+    }
+    public IActionResult LatinList(string pagenr, string search)
+    {
+        var vm = new LatinViewModel();
+
+        //Read a QueryParameters
+        if (int.TryParse(pagenr, out int _pagenr))
+        {
+            vm.ThisPageNr = _pagenr;
+        }
+
+        vm.SearchFilter = search; //Request.Query["search"];
+
+        //Pagination
+        vm.UpdatePagination(_latinService);
+
+        //Use the Service
+        vm.Latins = _latinService.ReadSentences(vm.ThisPageNr, vm.PageSize, vm.SearchFilter);
+
+        return View(vm);
+    }
+
+    public IActionResult LatinSearch(LatinViewModel vm)
+    {
+        //Pagination
+         vm.UpdatePagination(_latinService);
+
+        //Use the Service
+        vm.Latins = _latinService.ReadSentences(vm.ThisPageNr, vm.PageSize, vm.SearchFilter);
+
+        //Page is rendered as the postback is part of the form tag
+        return View("LatinList", vm);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
