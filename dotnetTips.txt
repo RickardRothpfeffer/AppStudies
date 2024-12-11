@@ -1,5 +1,2 @@
 New Razor Page with Model. In the directory open a terminal and type
 dotnet new page -n TestPage
-
-New MVC View. In the directory open a terminal and type
-dotnet new mvc -n Test
