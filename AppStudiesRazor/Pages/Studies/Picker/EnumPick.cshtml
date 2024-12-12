@@ -44,9 +44,11 @@
                 @foreach (var item in Html.GetEnumSelectList<AppStudies.Pages.Animals>())
                 {
                     <div class="form-check">
-                        <input name="SelectedAnimal3" class="form-check-input" type="checkbox" id="animal-@item.Value" value="@item.Value">
+                        <input name="SelectedAnimal3" class="form-check-input" type="checkbox" id="animal-@item.Value" value="@item.Value"
+                        @(Model.SelectedAnimal3.Contains(Enum.Parse<AppStudies.Pages.Animals>(item.Text))?"checked='checked'":"")>
+
                         <label class="form-check-label" for="animal-@item.Value">
-                            @item.Text
+                            @item.Text  @(Model.SelectedAnimal3.Contains(Enum.Parse<AppStudies.Pages.Animals>(item.Text)))
                         </label>
                     </div>
                 }
