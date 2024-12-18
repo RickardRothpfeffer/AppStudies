@@ -18,6 +18,11 @@
             </form>
         </div>
     </div>
+    <form method="post">
+        <input type="hidden" asp-for="SearchFilter">
+        <input type="hidden" asp-for="ThisPageNr">
+        <input type="hidden" name="id" data-seido-selected-item-id-target />
+
     @foreach (var item in Model.Quotes)
     {
         <div class="row mb-2 text-center">
@@ -27,9 +32,12 @@
             </div>
             <div class="col-md-2 themed-grid-col">
                 <a href="~/Studies/Model/ModelView?id=@item.QuoteId" class="btn btn-success btn-sm" type="button">View</a>
+                <button asp-page-handler="Select" class="btn btn-success btn-sm m-1"
+                    data-seido-selected-item-id="@item.QuoteId">Select</button>
             </div>
         </div>
     }
+    </form>
     <nav aria-label="Standard pagination example">
         <ul class="pagination">
             <li class="page-item">
@@ -51,6 +59,12 @@
             </li>
         </ul>
     </nav>
+
+    <div class="row mb-1 text-center">
+        <span class="alert alert-info" role="alert">
+            @Model.SelectedQuote?.Quote
+        </span>
+    </div>
 
     <!-- inital template that can be easily hidden -->
     <div class="d-none">
