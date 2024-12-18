@@ -45,7 +45,7 @@ namespace AppStudies.Pages
                 ThisPageNr = _pagenr;
             }
 
-            SearchFilter = "Martin"; //Request.Query["search"];
+            SearchFilter = Request.Query["search"];
 
             //Pagination
             UpdatePagination();
