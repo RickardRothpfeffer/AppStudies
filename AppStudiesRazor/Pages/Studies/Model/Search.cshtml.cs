@@ -21,13 +21,11 @@ namespace AppStudies.Pages
 
         //public member becomes part of the Model in the Razor page
         public List<FamousQuote> Quotes { get; set; } = new List<FamousQuote>();
-        public FamousQuote SelectedQuote { get; set; }
 
         //Pagination
         public int NrOfPages { get; set; }
         public int PageSize { get; } = 5;
 
-        [BindProperty]
         public int ThisPageNr { get; set; } = 0;
         public int PrevPageNr { get; set; } = 0;
         public int NextPageNr { get; set; } = 0;
@@ -74,19 +72,6 @@ namespace AppStudies.Pages
 
             //Use the Service
             Quotes = _service.ReadQuotes(ThisPageNr, PageSize, SearchFilter);
-
-            //Page is rendered as the postback is part of the form tag
-            return Page();
-        }
-
-        public IActionResult OnPostSelect(Guid id)
-        {
-            //Pagination
-            UpdatePagination();
-
-            //Use the Service
-            Quotes = _service.ReadQuotes(ThisPageNr, PageSize, SearchFilter);
-            SelectedQuote = _service.ReadQuote(id);
 
             //Page is rendered as the postback is part of the form tag
             return Page();
