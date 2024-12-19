@@ -54,8 +54,11 @@ namespace AppStudies.Pages.Studies
         {
             Message = $"PostSaveLatin() fired with id: {Guid.Parse(modalData.postdata)}";
 
-            //Page is not rerendered as the Post is triggered from a button click outside the form
+            //Page not reloaded as Post is outside a form via javascript
             return Page();
+            
+            //To reload, e.g 
+            //return Partial("Studies/Modals/_PartialModalsLaunch", Messages);
         }
     }
 }

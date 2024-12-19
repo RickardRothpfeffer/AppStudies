@@ -26,6 +26,15 @@
     <div class="row row-cols-1 row-cols-lg-4 align-items-stretch g-4 py-5">
         <div class="col-md-7 col-lg-8">
             <!-- Button trigger modal -->
+            <button type="button" class="w-100 btn btn-primary my-1" data-bs-toggle="modal" data-bs-target="#softModal">Bootstrap only</button>
+        </div>
+        <div class="col-md-7 col-lg-8">
+            <!-- Button trigger modal -->
+            <button type="button" class="w-100 btn btn-primary my-1" data-bs-toggle="modal" data-bs-target="#softModal"
+            data-seido-modal-title="Happy New Year">Bootstrap only</button>
+        </div>
+        <div class="col-md-7 col-lg-8">
+            <!-- Button trigger modal -->
             <button type="button" class="w-100 btn btn-primary my-1" data-bs-toggle="modal" data-bs-target="#softModal"
                     data-seido-modal-title="softModal" data-seido-modal-body="softModal body" data-seido-modal-cancel="Close" data-seido-modal-Ok="Save">
                 Launch soft modal - a modal that closes also if you click outside the modal or hit escape
@@ -58,13 +67,14 @@
                 <input type="hidden" name="groupId" data-seido-selected-item-id-target />
 
                 <!-- Button trigger modal with explicit post button -->
-                <button type="button" class="w-100 btn btn-primary my-1" data-bs-toggle="modal" data-bs-target="#submitModal"
+                <button type="button" class="w-100 btn btn-primary my-1" 
+                        data-bs-toggle="modal" data-bs-target="#submitModal"
                         data-seido-modal-title="submitModal" data-seido-modal-body="submitModal body"
                         data-seido-selected-item-id="@Guid.NewGuid()">
                     Launch submitModal with post inside form-tag via submit button, page reloaded
                 </button>
 
-                <!-- Modal with submit OK button within a form -->
+                <!-- Modal with submit OK button within a form Post-->
                 <div class="modal fade" id="submitModal" tabindex="-1" aria-labelledby="softModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
