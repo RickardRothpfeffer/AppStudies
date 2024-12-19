@@ -69,6 +69,7 @@ namespace AppStudies.Pages
                 //It is an create
                 var model = QuoteIM.UpdateModel(new FamousQuote());
                 model = _service.CreateQuote(model);
+
                 QuoteIM = new FamousQuoteIM(model);
             }
             else
@@ -80,6 +81,7 @@ namespace AppStudies.Pages
                 //update the changes and save
                 model = QuoteIM.UpdateModel(model);
                 model = _service.UpdateQuote(model);
+                
                 QuoteIM = new FamousQuoteIM(model);
             }
 
