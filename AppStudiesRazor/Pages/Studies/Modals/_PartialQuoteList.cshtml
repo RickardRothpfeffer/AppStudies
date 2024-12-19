@@ -1,0 +1,30 @@
+﻿@using Models;
+@inject IUrlHelper Url
+@inject IHttpContextAccessor HttpContextAccessor
+@model List<FamousQuote>
+    @foreach (var item in Model)
+    {
+        <div class="row mb-2 text-center">
+            <div class="col-md-10 themed-grid-col">
+                @item.Quote
+                <div class="col-md-16  text-end">@item.Author</div>
+            </div>
+            <div class="col-md-2 themed-grid-col">
+                <a href="~/Studies/Model/ModelView?id=@item.QuoteId" class="btn btn-success btn-sm" type="button">View</a>
+                <button asp-page-handler="Select" class="btn btn-success btn-sm m-1"
+                    data-seido-selected-item-id="@item.QuoteId">Select</button>
+
+                <button type="button" class="btn btn-success btn-sm m-1" 
+                        data-bs-toggle="modal" data-bs-target="#dangerModal"
+                        data-seido-modal-title="@item.QuoteId" 
+                        data-seido-modal-body="About to delete @item.QuoteId" 
+                        data-seido-modal-cancel="Close" data-seido-modal-Ok="Delete"
+                        
+                        data-seido-modal-post-data="@item.QuoteId" 
+                        data-seido-modal-post-url="@Url.PageLink(HttpContextAccessor.HttpContext.Request.Path, "Delete")">
+                    Del
+                </button>
+            </div>
+        </div>
+    }
+

@@ -4,6 +4,7 @@ using Configuration;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
+builder.Services.AddHttpContextAccessor();
 
 //use multiple Secret sources, Database connections and their respective DbContexts
 builder.Configuration.AddApplicationSecrets("../Configuration/Configuration.csproj");
