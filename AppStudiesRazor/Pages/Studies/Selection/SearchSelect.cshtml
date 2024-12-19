@@ -41,19 +41,19 @@
     <nav aria-label="Standard pagination example">
         <ul class="pagination">
             <li class="page-item">
-                <a class="page-link" href="~/Studies/Model/Search?pagenr=@Model.PrevPageNr&search=@Model.SearchFilter" aria-label="Previous">
+                <a class="page-link" href="~/Studies/Selection/SearchSelect?pagenr=@Model.PrevPageNr&search=@Model.SearchFilter" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
             @for (int i = 0; i < Model.PresentPages; i++)
             {
                 <li class="page-item">
-                    <a class="page-link" href="~/Studies/Model/Search?pagenr=@i&search=@Model.SearchFilter">@(i+1)</a>
+                    <a class="page-link" href="~/Studies/Selection/SearchSelect?pagenr=@i&search=@Model.SearchFilter">@(i+1)</a>
                 </li>
 
             }
             <li class="page-item">
-                <a class="page-link" href="~/Studies/Model/Search?pagenr=@Model.NextPageNr&search=@Model.SearchFilter" aria-label="Next">
+                <a class="page-link" href="~/Studies/Selection/SearchSelect?pagenr=@Model.NextPageNr&search=@Model.SearchFilter" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
