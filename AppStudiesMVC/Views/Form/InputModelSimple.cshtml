@@ -1,5 +1,4 @@
-﻿@page
-@model AppStudies.Pages.InputModelSimpleModel
+@model InputSimpleViewModel
 @{
     ViewData["Title"] = "Study InputModelListSimple";
 }
@@ -15,12 +14,12 @@
  
         <h2 class="pb-2 border-bottom">
             @Model.PageHeader
-            <button class="btn btn-primary-outline" type="submit" asp-page-handler="Save">
+            <button class="btn btn-primary-outline" type="submit" asp-asp-controller="Form" asp-action="InputModelSimpleSave">
                 <svg class="bi text-body-secondary flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#save" /></svg>
             </button>
-            @if (Model.QuoteIM.StatusIM != AppStudies.Pages.InputModelSimpleModel.StatusIM.Inserted)
+            @if (Model.QuoteIM.StatusIM != StatusIM.Inserted)
             {
-                <button class="btn btn-primary-outline" type="submit" asp-page-handler="Undo">
+                <button class="btn btn-primary-outline" type="submit" asp-asp-controller="Form" asp-action="InputModelSimpleUndo">
                     <svg class="bi text-body-secondary flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#undo" /></svg>
                 </button>
             }
