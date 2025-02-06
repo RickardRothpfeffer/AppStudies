@@ -20,6 +20,8 @@ namespace AppStudies.Pages
         readonly ILogger<SearchSelectModel> _logger = null;
 
         //public member becomes part of the Model in the Razor page
+
+        [BindProperty]
         public List<FamousQuote> Quotes { get; set; } = new List<FamousQuote>();
         public FamousQuote SelectedQuote { get; set; }
 
@@ -87,6 +89,21 @@ namespace AppStudies.Pages
             //Use the Service
             Quotes = _service.ReadQuotes(ThisPageNr, PageSize, SearchFilter);
             SelectedQuote = _service.ReadQuote(id);
+
+            //Page is rendered as the postback is part of the form tag
+            return Page();
+        }
+
+        public IActionResult OnPostDelete(Guid id)
+        {
+            //Pagination
+            UpdatePagination();
+
+            //Use the Service
+            _service.DeleteQuote(id);
+
+            //Use the Service
+            Quotes = _service.ReadQuotes(ThisPageNr, PageSize, SearchFilter);
 
             //Page is rendered as the postback is part of the form tag
             return Page();
